@@ -1,22 +1,36 @@
 package pl.sdacademy.unit.test.basic.exercises.tdd.task4;
 
 public class Basket {
+    private int maxBooksInBasket;
+    private Book[] books;
+    private int currentNoOfBooksInBasket = 0;
+
+    public Basket(int maxBooksInBasket) {
+        this.maxBooksInBasket = maxBooksInBasket;
+        books = new Book[maxBooksInBasket];
+    }
 
     public Book[] getAllBooks() {
-        // YOUR CODE HERE
-        return null;
+        return books;
     }
 
     public void addBook(Book book) {
-        // YOUR CODE HERE
+        if (currentNoOfBooksInBasket < maxBooksInBasket) {
+            books[currentNoOfBooksInBasket++] = book;
+        }
     }
 
     public void cleanBasket() {
-        // YOUR CODE HERE
+        for (int i = 0; i < currentNoOfBooksInBasket; i++) {
+            books[i] = null;
+        }
     }
 
     public float getTotalAmount() {
-        // YOUR CODE HERE
-        return 0;
+        float result = 0;
+        for (int i = 0; i < currentNoOfBooksInBasket; i++) {
+            result += books[i].getPrice();
+        }
+        return result;
     }
 }
